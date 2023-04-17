@@ -12,7 +12,15 @@ const orderController = {
     },
      async orderAndProducts(req,res){
         try {
-            const orderAndProducts = await Orderproduct.findAll(req.body)
+            const orderAndProducts = await Order.findAll({
+                include: {
+                  model: Product,
+                  attributes: ['id', 'name', 'price']
+                },
+                where: {
+                  orderId: req.params.orderId
+                }
+              })
             res.send({msg:'Pedido con productos mostrandose',orderAndProducts})
         } catch (error) {
             res.status(500).send(error);
