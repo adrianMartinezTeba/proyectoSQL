@@ -1,4 +1,4 @@
-const { User, Token, Sequelize, Orderproduct, Order } = require('../models/index')
+const { User, Token, Sequelize, Order } = require('../models/index')
 const { Op } = Sequelize
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -39,7 +39,7 @@ const UserController = {
       }
       const token = jwt.sign({ id: user.id }, jwt_secret); // creo el token
       Token.create({ token, UserId: user.id });
-      res.status(201).res.send({ token, message: "Bienvenid@ " + user.name, user });
+      res.status(201).send({ token, message: "Bienvenid@ " + user.name, user });
     } catch (error) {
       console.log(error);
       res.status(500).send(error);
@@ -55,7 +55,7 @@ const UserController = {
           },
         ],
       });
-      res.status(201).res.send({ msg: 'Mostrando todo correctamente', userOrders });
+      res.status(201).send({ msg: 'Mostrando todo correctamente', userOrders });
     } catch (error) {
       res.status(500).send(error);
     }
@@ -71,7 +71,7 @@ const UserController = {
           ],
         },
       });
-      res.status(201).res.send({ message: "Desconectado con éxito" });
+      res.status(201).send({ message: "Desconectado con éxito" });
     } catch (error) {
       console.log(error);
       res

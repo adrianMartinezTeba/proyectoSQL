@@ -23,7 +23,7 @@ const orderController = {
               }
             ]
           });
-          res.status(201).res.send({ msg: 'Mostrando pedido con productos', orderAndProducts });
+          res.status(201).send({ msg: 'Mostrando pedido con productos', orderAndProducts });
         } catch (error) {
           res.status(500).send(error);
         }

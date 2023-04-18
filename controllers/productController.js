@@ -17,7 +17,7 @@ const ProductController = {
                     id: req.params.id,
                 },
             });
-            res.status(201). res.send("Producto actualizado con éxito");
+            res.status(201).send("Producto actualizado con éxito");
         } catch (error) {
             res.status(500).send(error);
         }
@@ -29,7 +29,7 @@ const ProductController = {
                     ProductId: req.params.id
                 }
             });
-            res.status(201).res.send({ msg: 'Usuario eliminado con exito' })
+            res.status(201).send({ msg: 'Usuario eliminado con exito' })
         } catch (error) {
             res.status(500).send(error);
         }
@@ -39,7 +39,7 @@ const ProductController = {
             const productsWithCategory = await Product.findAll({
                 include: [{ model: Category, attributes: ['name'] }]
             })
-            res.status(201).res.send({ msg: 'Mostrando producto con su categoria', productsWithCategory })
+            res.status(201).send({ msg: 'Mostrando producto con su categoria', productsWithCategory })
         } catch (error) {
             res.status(500).send(error);
         }
@@ -47,7 +47,7 @@ const ProductController = {
     async getAllProducts(req, res) {
         try {
             const getAllProducts = await Product.findAll(req.body)
-            res.status(201).res.send({ msg: 'mostrando todos los productos', getAllProducts })
+            res.status(201).send({ msg: 'mostrando todos los productos', getAllProducts })
         } catch (error) {
             res.status(500).send(error);
         }
@@ -57,7 +57,7 @@ const ProductController = {
             const productById = await Product.findOne({
                 where: { id: req.params.id }
             })
-            res.status(201).res.send({ msg: 'mostrando el producto por id', productById })
+            res.status(201).send({ msg: 'mostrando el producto por id', productById })
         } catch (error) {
             res.status(500).send(error);
         }
@@ -71,7 +71,7 @@ const ProductController = {
                     },
                 }
             })
-            res.status(201).res.send({ msg: 'Mostrando producto por nombre', productByName })
+            res.status(201).send({ msg: 'Mostrando producto por nombre', productByName })
         } catch (error) {
             res.status(500).send(error);
         }
@@ -83,7 +83,7 @@ const ProductController = {
                     price: req.params.price
                 }
             });
-            res.status(201).res.send({ msg: 'Producto encontrado', productByPrice })
+            res.status(201).send({ msg: 'Producto encontrado', productByPrice })
         } catch (error) {
             res.status(500).send(error);
         }
@@ -93,7 +93,7 @@ const ProductController = {
           const productsByPriceHightoShort = await Product.findAll({
             order: [['price', 'DESC']]
           });
-          res.status(201).res.send({ msg: 'Productos encontrados', productsByPriceHightoShort });
+          res.status(201).send({ msg: 'Productos encontrados', productsByPriceHightoShort });
         } catch (error) {
           res.status(500).send(error);
         }
