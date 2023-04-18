@@ -1,8 +1,8 @@
-#Proyecto de backend para tienda online<br>
-Este proyecto de backend consiste en el desarrollo de una API REST utilizando las tecnologías Node.js, Express, y MySQL/Sequelize para una tienda en línea (e-commerce). El objetivo del proyecto es crear un conjunto de endpoints para gestionar productos, categorías, usuarios y pedidos.
+# Proyecto de backend para tienda online<br>
+Este proyecto de backend consiste en el desarrollo de una API REST utilizando las tecnologías Node.js, Express, y MySQL/Sequelize para una tienda en línea (e-commerce). El objetivo del proyecto es crear un conjunto de endpoints para gestionar productos, categorías, usuarios y pedidos.<br>
 
-Descripción
-Se va a desarrollar una API REST capaz de:
+# Descripción
+Se va a desarrollar una API REST capaz de:<br>
 
 Registrar usuarios utilizando Bcrypt.
 Autenticar usuarios con token y middleware.
@@ -10,12 +10,12 @@ Crear un CRUD de cada una de las tablas.
 Establecer al menos una relación many-to-many y otra one-to-many.
 Utilizar seeders para cargar datos iniciales de los productos.
 
-Tecnologías
-Se utilizará NODE.js,MySQL con Sequelize y Express para desarrollar la API.En la que utilizaremos el sistema de MVC para organizar nuestro proyecto
-Endpoints
+# Tecnologías
+Se utilizará NODE.js,MySQL con Sequelize y Express para desarrollar la API.En la que utilizaremos el sistema de MVC para organizar nuestro proyecto<br><br>
+# Endpoints
 Aqui voy a mostrar el codigo que se ha realizado para hacer los endpoints.
 
-Productos
+# Productos
 CRUD de productos
 Endpoint para crear un producto
 Endpoint para actualizar un producto
@@ -124,7 +124,7 @@ async createProduct(req, res) {
         }
       }
 ```
-Categorías
+# Categorías
 CRUD de categorías
 Endpoint que traiga todas las categorías junto con los productos que tienen
 Endpoint que traiga una categoría por su id
@@ -209,7 +209,7 @@ Filtro para buscar categorías por nombre
 }
 ```
 
-Pedidos
+# Pedidos
 Endpoint que traiga los pedidos junto con los productos que tienen
 Endpoint para crear pedidos
 ```javascript
@@ -242,13 +242,88 @@ Endpoint para crear pedidos
 }
 ```
 
-Usuarios
+# Usuarios
 Endpoint para registrar un usuario utilizando Bcrypt
 Endpoint para login (utilizando Bcrypt + JWT)
 Endpoint que traiga la información del usuario conectado junto con los pedidos que tiene y los productos que contiene cada pedido
 Endpoint para el logout
+```javascript
+  async createUser(req, res) {
+    req.body.role = 'user'
+    try {
+      const password = await bcrypt.hash(req.body.password, 10)
+      const bodyWithPasswordHashed = { ...req.body, password }
+      const user = await User.create(bodyWithPasswordHashed)
+      res.status(201).send({ msg: "Usuario creado con éxito", user });
+    } catch (error) {
+      console.error(error);
+      res.send(error)
+    }
 
-Seeders
+  },
+  async login(req, res) {
+    try {
+      const user = await User.findOne({
+        where: {
+          email: req.body.email,
+        },
+      });
+      if (!user) {
+        return res
+          .status(400)
+          .send({ message: "Usuario o contraseña incorrectos" });
+      }
+      const isMatch = bcrypt.compareSync(req.body.password, user.password); //comparo contraseñas
+      if (!isMatch) {
+        return res
+          .status(400)
+          .send({ message: "Usuario o contraseña incorrectos" });
+      }
+      const token = jwt.sign({ id: user.id }, jwt_secret); // creo el token
+      Token.create({ token, UserId: user.id });
+      res.status(201).res.send({ token, message: "Bienvenid@ " + user.name, user });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error);
+    }
+  },
+  async  userOrders(req, res) {
+    try {
+      const userOrders = await User.findByPk(req.user.id, {
+        include: [
+          {
+            model: Order,
+            include: [{ model: Product }],
+          },
+        ],
+      });
+      res.status(201).res.send({ msg: 'Mostrando todo correctamente', userOrders });
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  },
+  
+  async logout(req, res) {
+    try {
+      await Token.destroy({
+        where: {
+          [Op.and]: [
+            { UserId: req.user.id },
+            { token: req.headers.authorization },
+          ],
+        },
+      });
+      res.status(201).res.send({ message: "Desconectado con éxito" });
+    } catch (error) {
+      console.log(error);
+      res
+        .status(500)
+        .send({ message: "hubo un problema al tratar de desconectarte" });
+    }
+  }
+```
+
+# Seeders
 Seeder para crear 5 productos.
 ```javascript
       {
