@@ -1,7 +1,7 @@
 # Proyecto de backend para tienda online<br>
 Este proyecto de backend consiste en el desarrollo de una API REST utilizando las tecnologías Node.js, Express, y MySQL/Sequelize para una tienda en línea (e-commerce). El objetivo del proyecto es crear un conjunto de endpoints para gestionar productos, categorías, usuarios y pedidos.<br>
 
-# Descripción
+## Descripción
 Se va a desarrollar una API REST capaz de:<br>
 
 Registrar usuarios utilizando Bcrypt.
@@ -10,21 +10,18 @@ Crear un CRUD de cada una de las tablas.
 Establecer al menos una relación many-to-many y otra one-to-many.
 Utilizar seeders para cargar datos iniciales de los productos.
 
-# Tecnologías
+## Tecnologías
 Se utilizará NODE.js,MySQL con Sequelize y Express para desarrollar la API.En la que utilizaremos el sistema de MVC para organizar nuestro proyecto<br><br>
-# Endpoints
+## Endpoints
 Aqui voy a mostrar el codigo que se ha realizado para hacer los endpoints.
 
-# Productos
-CRUD de productos
-Endpoint para crear un producto
-Endpoint para actualizar un producto
-Endpoint para eliminar un producto
-Endpoint que traiga los productos junto con la categoría o categorías a las que pertenecen
-Endpoint que traiga un producto por su id
-Filtro para buscar producto por nombre
-Filtro para buscar producto por precio
-Filtro que ordene los productos de mayor a menor precio
+### Productos
+CRUD de productos<br>
+Endpoint que traiga los productos junto con la categoría o categorías a las que pertenecen<br>
+Endpoint que traiga un producto por su id<br>
+Filtro para buscar producto por nombre<br>
+Filtro para buscar producto por precio<br>
+Filtro que ordene los productos de mayor a menor precio<br>
 
 ```javascript
 async createProduct(req, res) {
@@ -124,11 +121,11 @@ async createProduct(req, res) {
         }
       }
 ```
-# Categorías
-CRUD de categorías
-Endpoint que traiga todas las categorías junto con los productos que tienen
-Endpoint que traiga una categoría por su id
-Filtro para buscar categorías por nombre
+### Categorías
+CRUD de categorías<br>
+Endpoint que traiga todas las categorías junto con los productos que tienen<br>
+Endpoint que traiga una categoría por su id<br>
+Filtro para buscar categorías por nombre<br>
 ```javascript
  async createCategory(req, res) {
         try {
@@ -209,9 +206,9 @@ Filtro para buscar categorías por nombre
 }
 ```
 
-# Pedidos
-Endpoint que traiga los pedidos junto con los productos que tienen
-Endpoint para crear pedidos
+### Pedidos
+Endpoint que traiga los pedidos junto con los productos que tienen<br>
+Endpoint para crear pedidos<br>
 ```javascript
   async newOrder(req, res) {
         try {
@@ -242,11 +239,11 @@ Endpoint para crear pedidos
 }
 ```
 
-# Usuarios
-Endpoint para registrar un usuario utilizando Bcrypt
-Endpoint para login (utilizando Bcrypt + JWT)
-Endpoint que traiga la información del usuario conectado junto con los pedidos que tiene y los productos que contiene cada pedido
-Endpoint para el logout
+### Usuarios
+Endpoint para registrar un usuario utilizando Bcrypt<br>
+Endpoint para login (utilizando Bcrypt + JWT)<br>
+Endpoint que traiga la información del usuario conectado junto con los pedidos que tiene y los productos que contiene cada pedido<br>
+Endpoint para el logout<br>
 ```javascript
   async createUser(req, res) {
     req.body.role = 'user'
@@ -323,7 +320,7 @@ Endpoint para el logout
   }
 ```
 
-# Seeders
+### Seeders
 Seeder para crear 5 productos.
 ```javascript
       {
