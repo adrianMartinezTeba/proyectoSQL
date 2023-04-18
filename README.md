@@ -1,4 +1,4 @@
-Proyecto de backend para tienda online
+#Proyecto de backend para tienda online<br>
 Este proyecto de backend consiste en el desarrollo de una API REST utilizando las tecnologías Node.js, Express, y MySQL/Sequelize para una tienda en línea (e-commerce). El objetivo del proyecto es crear un conjunto de endpoints para gestionar productos, categorías, usuarios y pedidos.
 
 Descripción
