@@ -61,7 +61,8 @@ CRUD de categorías
         } catch (error) {
             res.status(500).send(error);
         }
-    },```
+    },
+    ```
 Endpoint que traiga todas las categorías junto con los productos que tienen
 Endpoint que traiga una categoría por su id
 Filtro para buscar categorías por nombre
