@@ -10,24 +10,25 @@ const orderController = {
             res.status(500).send(error);
         }
     },
-     async orderAndProducts(req,res){
+    async orderAndProducts(req, res) {
         try {
-            const orderAndProducts = await Order.findAll({
-                include: {
-                  model: Product,
-                  attributes: ['id', 'name', 'price']
+          const orderAndProducts = await Order.findAll({
+            include: [
+              {
+                model: Product,
+                through: {
+                  model: Orderproduct,
                 },
-                where: {
-                  orderId: req.params.orderId
-                }
-              })
-            res.send({msg:'Pedido con productos mostrandose',orderAndProducts})
+                attributes: ['name', 'price']
+              }
+            ]
+          });
+          res.status(201).res.send({ msg: 'Mostrando pedido con productos', orderAndProducts });
         } catch (error) {
-            res.status(500).send(error);
+          res.status(500).send(error);
         }
-    }
 }
-
+}
 module.exports=orderController
 
 //roadmap.sh/backends

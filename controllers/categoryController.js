@@ -4,7 +4,7 @@ const categoryController = {
     async createCategory(req, res) {
         try {
             const newCategory = await Category.create(req.body)
-            res.status(201).send({ msg: "Producto creado con éxito", newCategory });
+            res.status(201).send({ msg: "Categoria creada con éxito", newCategory });
         } catch (error) {
             res.status(500).send(error);
         }
@@ -16,7 +16,7 @@ const categoryController = {
                     id: req.params.id
                 }
             })
-            res.send("Categoria actualizado con éxito",categoryUpdated);
+            res.status(201).res.send("Categoria actualizado con éxito",categoryUpdated);
         } catch (error) {
             res.status(500).send(error);
         }
@@ -28,7 +28,7 @@ const categoryController = {
                     id:req.parms.id
                 }
             })
-            res.send({msg:'Categoria borrada correctamente'})
+            res.status(201).res.send({msg:'Categoria borrada correctamente'})
         } catch (error) {
             res.status(500).send(error);
         }
@@ -38,14 +38,14 @@ const categoryController = {
             const categoryWithProducts = await Category.findAll({
                 include:[{model:Product,attribute:['name']}]
             })
-            res.send({msg:'Mostrando categoria con sus productos',categoryWithProducts})
+            res.status(201).res.send({msg:'Mostrando categoria con sus productos',categoryWithProducts})
         } catch (error) {
             res.status(500).send(error);
         }
     },async getAllCategories(req, res) {
         try {
             const getAllCategories = Category.get(req.body)
-            res.send({ msg: 'mostrando todas las categorias', getAllCategories })
+            res.status(201).res.send({ msg: 'mostrando todas las categorias', getAllCategories })
         } catch (error) {
             res.status(500).send(error);
         }
@@ -58,7 +58,7 @@ const categoryController = {
                     id:req.params.id
                 }
             })
-            res.send({msg:'Categoria mostrandose correctamente',catById})
+            res.status(201).res.send({msg:'Categoria mostrandose correctamente',catById})
         } catch (error) {
             res.status(500).send(error);
         }
@@ -72,7 +72,7 @@ const categoryController = {
                     }
                 }
             })
-            res.send({msg:'Categoria mostrandose correctamente',catByName})
+            res.status(201).res.send({msg:'Categoria mostrandose correctamente',catByName})
         
         } catch (error) {
             res.status(500).send(error);

@@ -13,9 +13,9 @@ module.exports = {
       createdAt:new Date()
       },
       {
-        price:100,
-        name:'tv',
-        CategoryId:3,
+        price:200,
+        name:'lavavajillas',
+        CategoryId:1,
         updatedAt:new Date(),
         createdAt:new Date()
       },
@@ -29,7 +29,7 @@ module.exports = {
       {
         price:100,
         name:'horno',
-        CategoryId:3,
+        CategoryId:1,
         updatedAt:new Date(),
         createdAt:new Date()
       },

@@ -39,31 +39,28 @@ const UserController = {
       }
       const token = jwt.sign({ id: user.id }, jwt_secret); // creo el token
       Token.create({ token, UserId: user.id });
-      res.send({ token, message: "Bienvenid@ " + user.name, user });
+      res.status(201).res.send({ token, message: "Bienvenid@ " + user.name, user });
     } catch (error) {
       console.log(error);
       res.status(500).send(error);
     }
   },
-  async userOrders(req, res) {
+  async  userOrders(req, res) {
     try {
-      const userOrders = await User.findOne({
-        where: {
-        id: req.User.id
-        },
-        include:[{
-          model:Order,
-          include:[{
-            model:Product,
-            through:{attributes:[]}
-          }]
-        }]
-      })
-      res.send({ msg: 'mostrando todo correctamente', userOrders })
+      const userOrders = await User.findByPk(req.user.id, {
+        include: [
+          {
+            model: Order,
+            include: [{ model: Product }],
+          },
+        ],
+      });
+      res.status(201).res.send({ msg: 'Mostrando todo correctamente', userOrders });
     } catch (error) {
       res.status(500).send(error);
     }
   },
+  
   async logout(req, res) {
     try {
       await Token.destroy({
@@ -74,7 +71,7 @@ const UserController = {
           ],
         },
       });
-      res.send({ message: "Desconectado con éxito" });
+      res.status(201).res.send({ message: "Desconectado con éxito" });
     } catch (error) {
       console.log(error);
       res
