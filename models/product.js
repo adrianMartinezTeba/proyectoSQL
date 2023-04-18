@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notEmpty: {
-          msg: "Por favor introduce tu nombre",
+          msg: "Por favor introduce el precio",
         },
       },
     },
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notEmpty: {
-          msg: "Por favor introduce tu nombre",
+          msg: "Por favor introduce la categoria",
         },
       },
     }
