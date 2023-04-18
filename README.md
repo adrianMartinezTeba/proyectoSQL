@@ -30,7 +30,8 @@ Implementación de validación al crear un producto para que se rellenen todos l
 Sólo se podrán crear, actualizar y eliminar productos si el usuario está autenticado.
 Categorías
 CRUD de categorías
-```    async createCategory(req, res) {
+```javascript
+async createCategory(req, res) {
         try {
             const newCategory = await Category.create(req.body)
             res.status(201).send({ msg: "Categoria creada con éxito", newCategory });
