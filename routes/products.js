@@ -6,7 +6,7 @@ const { authentication } = require('../middleware/authentication')
 router.post('/newProduct',authentication,ProductController.createProduct),
 router.put('/updateProduct/:id',authentication,ProductController.updateProduct),
 router.delete('/deleteProduct/:id',authentication,ProductController.deleteProduct),
-router.get('/productWithCategory',ProductController.productWithCategory),
+router.get('/productWithCategory/:id',ProductController.productWithCategory),
 router.get('/productById/:id',ProductController.productById)
 router.get('/getAllProducts',ProductController.getAllProducts)
 router.get('/productByName/:name',ProductController.productByName)

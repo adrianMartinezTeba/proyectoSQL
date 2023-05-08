@@ -36,14 +36,14 @@ const ProductController = {
     },
     async productWithCategory(req, res) {
         try {
-            const productsWithCategory = await Product.findAll({
-                include: [{ model: Category, attributes: ['name'] }]
-            })
-            res.status(201).send({ msg: 'Mostrando producto con su categoria', productsWithCategory })
+          const productWithCategory = await Product.findByPk(req.params.id, {
+            include: { model: Category, attributes: ['name'] },
+          });
+          res.status(200).send({ msg: 'Mostrando producto con su categoría', productWithCategory });
         } catch (error) {
-            res.status(500).send(error);
+          res.status(500).send(error);
         }
-    },
+      },
     async getAllProducts(req, res) {
         try {
             const getAllProducts = await Product.findAll(req.body)

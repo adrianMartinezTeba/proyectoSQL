@@ -1,4 +1,4 @@
-const { Order,Orderproduct  } = require('../models/index')
+const { Order,Orderproduct,Product  } = require('../models/index')
 
 const orderController = {
     async newOrder(req, res) {
