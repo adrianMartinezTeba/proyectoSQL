@@ -12,12 +12,12 @@ const ProductController = {
     },
     async updateProduct(req, res) {
         try {
-            await Product.update(req.body, {
+           const productUpdated = await Product.update(req.body, {
                 where: {
                     id: req.params.id,
                 },
             });
-            res.status(201).send("Producto actualizado con éxito");
+            res.status(201).send({msg:"Producto actualizado con éxito",productUpdated});
         } catch (error) {
             res.status(500).send(error);
         }
@@ -26,10 +26,10 @@ const ProductController = {
         try {
             await Product.destroy({
                 where: {
-                    ProductId: req.params.id
+                    id: req.params.id
                 }
             });
-            res.status(201).send({ msg: 'Usuario eliminado con exito' })
+            res.status(201).send({ msg: 'Producto eliminado con exito' })
         } catch (error) {
             res.status(500).send(error);
         }
