@@ -16,19 +16,19 @@ const categoryController = {
                     id: req.params.id
                 }
             })
-            res.status(201).send("Categoria actualizado con éxito",categoryUpdated);
+            res.status(201).send({msg:"Categoria actualizado con éxito",categoryUpdated});
         } catch (error) {
             res.status(500).send(error);
         }
     },
     async deleteCategory(req,res){
         try {
-            Category.destroy(req.body,{
+            const deleteCate = await Category.destroy({
                 where:{
-                    id:req.parms.id
+                    id:req.params.id
                 }
             })
-            res.status(201).send({msg:'Categoria borrada correctamente'})
+            res.status(201).send({msg:'Categoria borrada correctamente',deleteCate})
         } catch (error) {
             res.status(500).send(error);
         }
@@ -44,7 +44,7 @@ const categoryController = {
         }
     },async getAllCategories(req, res) {
         try {
-            const getAllCategories = Category.get(req.body)
+            const getAllCategories = await Category.findAll()
             res.status(201).send({ msg: 'mostrando todas las categorias', getAllCategories })
         } catch (error) {
             res.status(500).send(error);
