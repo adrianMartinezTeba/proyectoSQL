@@ -6,39 +6,44 @@ module.exports = {
     return queryInterface.bulkInsert ( 'Products', [
 
       {
-        price:100,
-      name:'microondas',
+        price:60,
+      name:'mario kart',
       CategoryId:1,
       updatedAt:new Date(),
-      createdAt:new Date()
+      createdAt:new Date(),
+      description:'aaaaaa'
       },
       {
-        price:200,
-        name:'lavavajillas',
+        price:58,
+        name:'god of war',
         CategoryId:1,
         updatedAt:new Date(),
-        createdAt:new Date()
+        createdAt:new Date(),
+        description:'aaaaaa'
       },
       {
         price:100,
         name:'sofa',
         CategoryId:2,
         updatedAt:new Date(),
-        createdAt:new Date()
+        createdAt:new Date(),
+        description:'aaaaaa'
       },
       {
         price:100,
         name:'horno',
         CategoryId:1,
         updatedAt:new Date(),
-        createdAt:new Date()
+        createdAt:new Date(),
+        description:'aaaaaa'
       },
       {
         price:100,
         name:'sillon',
         CategoryId:2,
         updatedAt:new Date(),
-        createdAt:new Date()
+        createdAt:new Date(),
+        description:'aaaaaa'
       }
       ])
   },

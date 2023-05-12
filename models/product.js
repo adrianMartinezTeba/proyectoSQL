@@ -27,8 +27,16 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           msg: "Por favor introduce el precio",
-        },
+        }
       },
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull:false,
+      validate: {
+        notEmpty: {
+          msg: "Por favor introduce una desccripción del producto",
+        }
     },
     CategoryId:  {
       type: DataTypes.INTEGER,
@@ -39,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     }
-  }, {
+  }, },{
     sequelize,
     modelName: 'Product',
   });

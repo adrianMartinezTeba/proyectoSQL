@@ -1,6 +1,7 @@
 const PORT = 8080
 const express = require('express')
 const app = express()
+app.use(express.static("./public"))
 app.use(express.json())
 
 app.use('/users',require('./routes/users.js'))
