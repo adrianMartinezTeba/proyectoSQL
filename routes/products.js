@@ -1,10 +1,10 @@
 const express = require('express')
-const upload = require("../middlewares/multer");
+
 const router = express.Router()
 const ProductController = require('../controllers/productController')
 const { authentication } = require('../middleware/authentication')
 
-router.post('/newProduct',authentication,upload.single("img"),ProductController.createProduct),
+router.post('/newProduct',ProductController.createProduct),
 router.put('/updateProduct/:id',authentication,ProductController.updateProduct),
 router.delete('/deleteProduct/:id',authentication,ProductController.deleteProduct),
 router.get('/productWithCategory/:id',ProductController.productWithCategory),
