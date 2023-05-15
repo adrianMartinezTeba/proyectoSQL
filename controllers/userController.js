@@ -19,6 +19,17 @@ const UserController = {
     }
 
   },
+  async allUsers(req,res){
+    try {
+      const users = await User.findAll()
+      res.status(201).send({msg:'Mostando users',users})
+      
+    } catch (error) {
+      console.error(error);
+
+    }
+    
+  },
   async login(req, res) {
     try {
       const user = await User.findOne({

@@ -46,7 +46,7 @@ const ProductController = {
       },
     async getAllProducts(req, res) {
         try {
-            const getAllProducts = await Product.findAll(req.body)
+            const getAllProducts = await Product.findAll()
             res.status(201).send({ msg: 'mostrando todos los productos', getAllProducts })
         } catch (error) {
             res.status(500).send(error);

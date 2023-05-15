@@ -11,7 +11,7 @@ module.exports = {
       CategoryId:1,
       updatedAt:new Date(),
       createdAt:new Date(),
-      description:'aaaaaa'
+      description:'aaaaaa',
       },
       {
         price:58,
