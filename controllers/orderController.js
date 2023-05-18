@@ -3,7 +3,7 @@ const { Order,Orderproduct,Product  } = require('../models/index')
 const orderController = {
     async newOrder(req, res) {
         try {
-            const newOrder = await Order.create(req.body)
+            const newOrder = await Order.create({...req.body,UserId:req.user.id})
             newOrder.addProduct(req.body.ProductId)
             res.status(201).send({ msg: "Pedido realizado con éxito", newOrder });
         } catch (error) {
@@ -21,7 +21,10 @@ const orderController = {
                 },
                 attributes: ['name', 'price']
               }
-            ]
+            ],
+            where:{
+              userId:req.user.id
+            }
           });
           res.status(201).send({ msg: 'Mostrando pedido con productos', orderAndProducts });
         } catch (error) {

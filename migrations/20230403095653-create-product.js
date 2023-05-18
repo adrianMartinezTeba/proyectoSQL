@@ -12,9 +12,12 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      // img:{
-      //   type: Sequelize.STRING,
-      // },
+      img:{
+        type: Sequelize.STRING,
+      },
+      trailer:{
+        type: Sequelize.STRING,
+      },
       price: {
         type: Sequelize.INTEGER
       },

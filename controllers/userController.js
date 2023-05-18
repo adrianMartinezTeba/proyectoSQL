@@ -62,13 +62,15 @@ const UserController = {
         include: [
           {
             model: Order,
-            include: [{ model: Product,
+            include: [{ 
+              model: Product,
               through: {
                 model: Orderproduct,
               }, }],
           },
         ],
       });
+      
       res.status(201).send({ msg: 'Mostrando todo correctamente', userOrders });
     } catch (error) {
       res.status(500).send(error);
@@ -92,6 +94,23 @@ const UserController = {
         .status(500)
         .send({ message: "hubo un problema al tratar de desconectarte" });
     }
-  },
+  },async findUserByToken(req, res) {
+    try {
+      const token = req.headers.authorization;
+      const tokenData = jwt.verify(token, jwt_secret);
+      const user = await User.findOne({
+        where: {
+          id: tokenData.id,
+        },
+      });
+      if (!user) {
+        return res.status(404).send({ message: "Usuario no encontrado" });
+      }
+      res.status(200).send(user);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ message: "Error al buscar usuario por token" });
+    }
+  }
 }
 module.exports = UserController

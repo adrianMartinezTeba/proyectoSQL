@@ -21,10 +21,14 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    // img:{
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    // },
+    img:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    trailer:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     price:  {
       type: DataTypes.INTEGER,
       allowNull: false,
